@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/michaelhawkins/ontologies/2025/11/untitled-ontology-17/"
+     xml:base="http://www.semanticweb.org/michaelhawkins/ontologies/2025/11/untitled-ontology-17/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars">
+        <rdfs:comment>Ontology describing an application for operating a Martian Robot</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#atLocation -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#atLocation">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Robot"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#atLocation"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Location"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#consumesInstuctionSet -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#consumesInstuctionSet">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Robot"/>
+        <rdfs:range rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#InstructionSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#hasCoordinate -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#hasCoordinate">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Location"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#hasCoordinate"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#hasInstruction -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#hasInstruction">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#InstructionSet"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#hasInstruction"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">100</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#onSurface -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#onSurface">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Location"/>
+        <rdfs:range rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Surface"/>
+        <rdfs:comment>We associate the coordiante with the surface, this enables us to extend the coordinate into other dimensions if needed.  If it was the other way around then the surface would own the coordinate and limit it t two dimensions.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#providesInstructionSet -->
+
+    <owl:ObjectProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#providesInstructionSet">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Earth"/>
+        <rdfs:range rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#InstructionSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#coordinateValue -->
+
+    <owl:DatatypeProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#coordinateValue">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</xsd:maxInclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#isLost -->
+
+    <owl:DatatypeProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#isLost">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Robot"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#robotOrientation -->
+
+    <owl:DatatypeProperty rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#robotOrientation">
+        <rdfs:domain rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Robot"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>E</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>N</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>S</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>W</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#CoordinateX -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#CoordinateX">
+        <rdfs:subClassOf rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate"/>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#CoordinateY -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#CoordinateY">
+        <rdfs:subClassOf rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Coordinate"/>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Earth -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Earth">
+        <rdfs:comment></rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Forward -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Forward">
+        <rdfs:subClassOf rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction"/>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#InstructionSet -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#InstructionSet"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Location -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Location"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Robot -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Robot"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Scent -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Scent"/>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#Surface -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Surface">
+        <rdfs:comment>A rectangular grid around which robots are able to move</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#TurnLeft -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#TurnLeft">
+        <rdfs:subClassOf rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction"/>
+        <rdfs:comment>Turn left 90 degrees and remain at the current Coordinate</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://github.com/hawkmauk/martian-robots/ontology/mars#TurnRight -->
+
+    <owl:Class rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#TurnRight">
+        <rdfs:subClassOf rdf:resource="https://github.com/hawkmauk/martian-robots/ontology/mars#Instruction"/>
+        <rdfs:comment>Turn right 90 degrees and remain at the current Coordinate</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#Forward"/>
+            <rdf:Description rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#TurnLeft"/>
+            <rdf:Description rdf:about="https://github.com/hawkmauk/martian-robots/ontology/mars#TurnRight"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
