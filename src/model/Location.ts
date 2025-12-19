@@ -33,4 +33,17 @@ export default class Location {
         return this.arena;
     }
 
+    public toString(): string {
+        const coordsArray = Array.from(this.coordinates.values())
+            .sort((a, b) => a.constructor.name.localeCompare(b.constructor.name))
+            .map(coord => coord.toString());
+        return coordsArray.join(' ');
+    }
+
+}
+
+export interface LocationInterface {
+    getCoordinate(type: typeof Coordinate): Coordinate | undefined;
+    getArena(): Arena;
+    toString(): string;
 }

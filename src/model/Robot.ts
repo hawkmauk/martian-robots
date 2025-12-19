@@ -1,45 +1,56 @@
 import InstructionSet from './Instruction/InstructionSet';
-import Locatable from './Locatable';
 import Location from './Location';
-import type Arena from './Arena';
-import type { Orientation } from './Orientation';
-export default class Robot extends Locatable implements RobotInterface {
+import Orientation from './Orientation';
+import Arena from './Arena';
+export default class Robot implements RobotInterface {
 
-    private orientation: Orientation;
-    private lost: boolean;
+    private _orientation: Orientation;
+    private _lost: boolean;
+    private _location: Location;
 
-    constructor(arena: Arena, location: Location, orientation: Orientation) {
-        super(location);
-        this.orientation = orientation;
-        this.lost = false;
+    constructor(location: Location, orientation: Orientation) {
+        this._location = location;
+        this._orientation = orientation;
+        this._lost = false;
     }
 
     consumeInstructions(instructions: InstructionSet): void {
-        //to be implemented
+        while (instructions.hasNext()) {
+            const instruction = instructions.next();
+            instruction.execute(this);
+        }
     }
 
-    public getOrientation(): Orientation {
-        return this.orientation;
+    get location(): Location {
+        return this._location;
     }
 
-    public setOrientation(orientation: Orientation): void {
-        this.orientation = orientation;
+    set location(location: Location) {
+        this._location = location
+    }
+    
+    get orientation(): Orientation {
+        return this._orientation;
     }
 
-    public setLost(lost: boolean): void {
-        this.lost = lost;
+    set orientation(orientation: Orientation) {
+        this._orientation = orientation;
+    }
+
+    set lost(lost: boolean) {
+        this._lost = lost;
     }
     
     public isLost(): boolean {
-        return this.lost;
+        return this._lost;
     }
 
     toString(): string {
-        const coords = this.location;
-        // Assuming Location has a method to get X and Y coordinates
-        const x = (coords as any).getCoordinateX().getValue(); // Replace with actual method to get X
-        const y = (coords as any).getCoordinateY().getValue(); // Replace with actual method to get Y
         return `${this.location.toString()} ${this.orientation} ${this.isLost() ? 'LOST' : ''}`.trim();
+    }
+
+    public getArena(): Arena {
+        return this.location.getArena();
     }
 }
 
@@ -53,4 +64,5 @@ export interface RobotInterface {
      * console.log(robot.toString()); // Outputs: "1 2 N"
      */
     toString(): string;
+    getArena(): Arena;
 }

@@ -16,12 +16,12 @@ export default class InstructionSet {
         });
     }
 
-    hasNextInstruction() : boolean {
+    hasNext() : boolean {
         return this.instructions.length > 0;
     }
 
-    getNextInstruction() : Instruction {
-        if (!this.hasNextInstruction()) {
+    next() : Instruction {
+        if (!this.hasNext()) {
             throw new Error("No more instructions available");
         }
         return this.instructions.pop()!;

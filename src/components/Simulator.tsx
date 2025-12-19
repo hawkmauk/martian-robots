@@ -3,7 +3,7 @@ import Surface from '../model/Arena/Surface';
 import Robot from '../model/Robot';
 import CoordinateX from '../model/Coordinate/CoordinateX';
 import CoordinateY from '../model/Coordinate/CoordinateY';
-import { OrientationFactory } from '../model/Orientation';
+import Orientation from '../model/Orientation';
 import InstructionSet from '../model/Instruction/InstructionSet';
 
 export default function Simulator( arenaSize: string, robotLocation: string, instructions: string) {
@@ -22,7 +22,7 @@ export default function Simulator( arenaSize: string, robotLocation: string, ins
     if (!location) {
         throw new Error('Invalid robot location');
     }
-    const robot = new Robot(arena, location, OrientationFactory.createOrientation(orientation));
+    const robot = new Robot(location, new Orientation(orientation));
     arena.addRobot(robot);
 
     // create the instructionSet
