@@ -1,16 +1,13 @@
-export default abstract class Locatable implements LocatableInterface{
+import Location from './Location';
+export default abstract class Locatable{
 
-    private location: Location;
+    private _location: Location;
     
     constructor(location: Location) {
-        this.location = location;
+        this._location = location;
     }
 
-    getLocation(): Location {
-        return this.location;
+    get location(): Location {
+        return this._location;
     }
-}
-
-export interface LocatableInterface {
-    getLocation(): Location;
 }

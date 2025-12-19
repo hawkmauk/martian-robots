@@ -1,10 +1,14 @@
 import Coordinate from './Coordinate';
+import Arena from './Arena';
 export default class Location {
 
     // use a map to ensure that only one coordinate of each type is stored
     private coordinates: Map<string, Coordinate>;
-    constructor( coordinates: Coordinate[] ) {
+    private arena: Arena;
+
+    constructor( coordinates: Coordinate[], arena: Arena ) {
         this.coordinates = new Map<string, Coordinate>();
+        this.arena = arena;
         this.addCoordinates( coordinates );
     }
     private addCoordinates(coordinates: Coordinate[]): void {
@@ -20,4 +24,13 @@ export default class Location {
         }
         this.coordinates.set(key, coordinate);
     }
+
+    public getCoordinate(type: typeof Coordinate): Coordinate | undefined {
+        return this.coordinates.get(type.name);
+    }
+
+    public getArena(): Arena {
+        return this.arena;
+    }
+
 }

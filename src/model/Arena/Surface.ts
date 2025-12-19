@@ -11,7 +11,7 @@ export default class Surface extends Arena {
         // populate the matrices with locations
         this.createCoordinates<CoordinateX>(x, CoordinateX).forEach( xc => {
             this.createCoordinates<CoordinateY>(y, CoordinateY).forEach( yc => {
-                this.matrix.add(new Location([xc, yc]));
+                this.matrix.add(new Location([xc, yc], this));
             })
         });
         return this;
